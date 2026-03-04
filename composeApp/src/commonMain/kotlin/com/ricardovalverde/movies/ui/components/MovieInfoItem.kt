@@ -1,0 +1,59 @@
+package com.ricardovalverde.movies.ui.components
+
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import com.composables.icons.heroicons.Heroicons
+import com.composables.icons.heroicons.solid.Star
+import com.ricardovalverde.movies.ui.theme.MoviesAppTheme
+
+@Composable
+fun MovieInfoItem(
+    modifier: Modifier = Modifier,
+    icon: ImageVector,
+    color: Color,
+    text: String,
+    size: Dp = 10.dp
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            modifier = Modifier.size(size),
+            imageVector = icon,
+            contentDescription = null,
+            tint = color
+        )
+
+        Text(
+            modifier = Modifier.padding(start = 5.dp),
+            text = text,
+            color = Color.Gray,
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MovieInfoItemPreview() {
+    MoviesAppTheme {
+        MovieInfoItem(
+            icon = Heroicons.Solid.Star,
+            text = "8.5",
+            color = Color.Yellow
+        )
+    }
+}
