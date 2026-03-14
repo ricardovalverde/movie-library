@@ -4,10 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ricardovalverde.movies.data.repository.MoviesRepository
 import com.ricardovalverde.movies.domain.model.MovieSection
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class MoviesListViewModel(private val moviesRepository: MoviesRepository) : ViewModel() {
 
@@ -22,6 +24,8 @@ class MoviesListViewModel(private val moviesRepository: MoviesRepository) : View
         viewModelScope.launch {
             try {
                 val movieSections = moviesRepository.getMovieSections()
+
+                delay(Random.nextLong(3000, 5000))
 
                 _moviesListState.update {
                     MoviesListState.Success(movieSections)
