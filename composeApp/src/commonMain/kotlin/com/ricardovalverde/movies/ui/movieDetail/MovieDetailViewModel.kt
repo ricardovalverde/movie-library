@@ -7,10 +7,12 @@ import androidx.navigation.toRoute
 import com.ricardovalverde.movies.data.repository.MoviesRepository
 import com.ricardovalverde.movies.domain.model.Movie
 import com.ricardovalverde.movies.navigation.AppRoutes
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class MovieDetailViewModel(
     savedStateHandle: SavedStateHandle,
@@ -29,6 +31,7 @@ class MovieDetailViewModel(
         viewModelScope.launch {
             moviesRepository.getMovieDetail(movieDetailRoute.id).fold(
                 onSuccess = { movie ->
+                    delay(Random.nextLong(3000,5000))
                     _movieDetailState.update { MovieDetailState.Success(movie) }
                     print("Duration: ${movie.duration}")
 
